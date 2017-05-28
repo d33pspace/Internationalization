@@ -12,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using Internationalization.Data;
 using Internationalization.Models;
 using Internationalization.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Internationalization
 {
@@ -50,7 +53,11 @@ namespace Internationalization
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -77,6 +84,26 @@ namespace Internationalization
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("en"),
+                new CultureInfo("zh-CN"),
+                new CultureInfo("zh")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                // Indicate default culture here.
+                DefaultRequestCulture = new RequestCulture("zh-CN"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures,
+                // Next episode...
+                RequestCultureProviders = new List<IRequestCultureProvider>()
+            });
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
