@@ -10,6 +10,8 @@ namespace Internationalization.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Message"] = "The home page.";
+
             return View();
         }
 
