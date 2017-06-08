@@ -97,6 +97,7 @@ namespace Internationalization
             {
                 // Indicate default culture here.
                 DefaultRequestCulture = new RequestCulture("zh-CN"),
+                //DefaultRequestCulture = new RequestCulture("en-US"),
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,
                 // UI strings that we have localized.
