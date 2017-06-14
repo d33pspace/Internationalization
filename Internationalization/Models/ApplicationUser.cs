@@ -9,5 +9,13 @@ namespace Internationalization.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public int? CurrencyId { get; set; }
+
+        public ICollection<Donation> Donations { get; set; }
+
+        public ApplicationUser()
+        {
+            Donations = new HashSet<Donation>();
+        }
     }
 }
