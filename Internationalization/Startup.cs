@@ -101,9 +101,7 @@ namespace Internationalization
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,
                 // UI strings that we have localized.
-                SupportedUICultures = supportedCultures,
-                // Next episode...
-                RequestCultureProviders = new List<IRequestCultureProvider>()
+                SupportedUICultures = supportedCultures
             });
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
