@@ -120,4 +120,7 @@
   <data name="And this would be the home page." xml:space="preserve">
     <value>这就是主页。</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>家</value>
+  </data>
 </root>

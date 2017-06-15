@@ -4,10 +4,11 @@
 @inject IViewLocalizer Localizer
     
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = Localizer["Home"].Value;
+
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
 }
-<h2>@ViewData["Title"].</h2>
+<h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 <p>@Localizer["And this would be the home page."]</p>
