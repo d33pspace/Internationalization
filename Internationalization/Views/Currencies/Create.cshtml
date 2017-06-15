@@ -1,14 +1,17 @@
 @model Internationalization.Models.Currency
 
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = Localizer["Create"].Value;
+    var create = "Create";
 }
 
 <h2>Create</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Currency</h4>
+        <h4>@Localizer["Currency"]</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -27,7 +30,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value= "@Localizer[create].Value" class="btn btn-default" />
             </div>
         </div>
     </div>
