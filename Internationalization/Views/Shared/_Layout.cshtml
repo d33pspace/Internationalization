@@ -84,7 +84,28 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
 
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script language="javascript">
+            /*global jQuery, window*/
+            (function ($) {
+                $(window).load(function () {
+                    $('.lang-selector li').on('click', function (e) {
+                        var lang = $(this).find('a').attr('data-value'),
+                            $langForm = $('#lang-form'),
+                            $cultureInput = $langForm.find('input[name=culture]');
+
+                        if ($cultureInput.val() === lang) {
+                            e.preventDefault();
+                            return;
+                        }
+                        else {
+                            $cultureInput.val(lang);
+                            $langForm.submit();
+                        }
+                    });
+
+                });
+            })(jQuery);
+        </script>
     </environment>
 
     @RenderSection("Scripts", required: false)
