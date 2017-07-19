@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 
-namespace Internationalization.Core
+namespace Internationalization.Services
 {
     public class MemoryStringLocalizer : IStringLocalizer
     {

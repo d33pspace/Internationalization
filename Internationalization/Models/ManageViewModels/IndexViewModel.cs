@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Internationalization.Models.ManageViewModels
 {
@@ -17,5 +19,10 @@ namespace Internationalization.Models.ManageViewModels
         public bool TwoFactor { get; set; }
 
         public bool BrowserRemembered { get; set; }
+
+        [Display(Name = "Select Currency")]
+        public int? CurrencyId { get; set; }
+
+        public List<SelectListItem> CurrencyList { get; set; }
     }
 }
