@@ -7,6 +7,12 @@ using Microsoft.Extensions.Localization;
 
 namespace Internationalization.Services
 {
+    /// <summary>
+    /// This is currently not used. However if you wish to have the localisation data stored in the database, you'd modify this and 
+    /// it will become the source of translation strings. You'd simply add a repository on the constructor for the 
+    /// data store which will store the data. That way you may have a unified storage location, the only downside is database calls
+    /// for all strings. The best would be to use a cache for translation data.
+    /// </summary>
     public class MemoryStringLocalizer : IStringLocalizer
     {
         private readonly IList<ResourceString> _resourceStrings;
