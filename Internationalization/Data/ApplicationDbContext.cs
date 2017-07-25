@@ -27,5 +27,7 @@ namespace Internationalization.Data
         public DbSet<Currency> Currencies { get; set; }
 
         public DbSet<Donation> Donations { get; set; }
+
+        public DbSet<Product> Products { get; set; }
     }
 }

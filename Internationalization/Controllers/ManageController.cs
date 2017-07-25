@@ -111,6 +111,7 @@ namespace Internationalization.Controllers
             {
                 user.CurrencyId = profile.CurrencyId;
                 await _userManager.UpdateAsync(user);
+
                 ViewData["StatusMessage"] = "Saved Profile";
             }
             return RedirectToAction(nameof(Index), "Manage");

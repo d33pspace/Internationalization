@@ -44,6 +44,7 @@ namespace Internationalization
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("LocalConnection");
+            services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
 
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -65,6 +66,7 @@ namespace Internationalization
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<ICurrencyRepository, CurrencyService>();
+            services.AddTransient<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

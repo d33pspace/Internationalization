@@ -20,9 +20,17 @@ namespace Internationalization.Models.ManageViewModels
 
         public bool BrowserRemembered { get; set; }
 
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+
         [Display(Name = "Select Currency")]
         public int? CurrencyId { get; set; }
 
+        [Display(Name = "Select Language")]
+        public string Culture { get; set; }
+
         public List<SelectListItem> CurrencyList { get; set; }
+
+        public List<SelectListItem> CultureList { get; set; }
     }
 }
