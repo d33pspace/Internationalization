@@ -35,21 +35,21 @@
                                 <form asp-controller="Manage" asp-action="SaveProfile"
                                       method="post" id="profile-form" role="form">
                                     <div class="form-group">
-                                        <label asp-for="FullName" class="col-md-2 control-label"></label>
+                                        <label asp-for="FullName" class="col-md-4 control-label"></label>
                                         <div class="col-md-10">
                                             <input asp-for="FullName" class="form-control" />
                                             <span asp-validation-for="FullName" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="Culture" class="col-md-2 control-label"></label>
+                                        <label asp-for="Culture" class="col-md-4 control-label"></label>
                                         <div class="col-md-10">
-                                            <select asp-for="CurrencyId" asp-items="@Model.CultureList"></select>
-                                            <span asp-validation-for="CurrencyId" class="text-danger"></span>
+                                            <select asp-for="Culture" asp-items="@Model.CultureList"></select>
+                                            <span asp-validation-for="Culture" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="CurrencyId" class="col-md-2 control-label"></label>
+                                        <label asp-for="CurrencyId" class="col-md-4 control-label"></label>
                                         <div class="col-md-10">
                                             <select asp-for="CurrencyId" asp-items="@Model.CurrencyList"></select>
                                             <span asp-validation-for="CurrencyId" class="text-danger"></span>

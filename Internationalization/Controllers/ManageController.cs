@@ -51,12 +51,14 @@ namespace Internationalization.Controllers
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
             // Optionaly use the region info to get default currency for user
-            string GetDefaultCurrencySymbol()
+
+
+            (string currencySymbol, string cultureName) GetCulture()
             {
                 var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
                 var culture = requestCulture.RequestCulture.Culture;
                 var regionInfo = new RegionInfo(culture.Name);
-                return regionInfo.ISOCurrencySymbol;
+                return (regionInfo.ISOCurrencySymbol, culture.Name);
             }
 
             ViewData["StatusMessage"] =
@@ -75,10 +77,10 @@ namespace Internationalization.Controllers
             }
 
             // 
+            var cultureInfo = GetCulture();
             if (user.CurrencyId == null)
             {
-                var defaultRegionCurrency = GetDefaultCurrencySymbol();
-                user.CurrencyId = _currencyRepository.GetBySymbolAsync(defaultRegionCurrency)?.Id;
+                user.CurrencyId = _currencyRepository.GetBySymbolAsync(cultureInfo.currencySymbol)?.Id;
             }
 
             var currencies = await _currencyRepository.GetAllAsync();
@@ -90,13 +92,28 @@ namespace Internationalization.Controllers
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                FullName = user.FullName,
+                Culture = user.Culture,
                 CurrencyId = user.CurrencyId,
                 CurrencyList = new List<SelectListItem>(currencies.Select(c => 
                                         new SelectListItem
                                         {
                                             Text = c.Symbol,
                                             Value = c.Id.ToString()
-                                        }))
+                                        })),
+                CultureList = new List<SelectListItem>
+                {
+                    new SelectListItem
+                    {
+                        Value = "en-US",
+                        Text = "English"
+                    },
+                    new SelectListItem
+                    {
+                        Value = "zh-CN",
+                        Text = "Chinese"
+                    }
+                }
             };
             return View(model);
         }
@@ -110,10 +127,12 @@ namespace Internationalization.Controllers
             if (user != null)
             {
                 user.CurrencyId = profile.CurrencyId;
+                user.Culture = profile.Culture;
+                user.FullName = profile.FullName;
                 await _userManager.UpdateAsync(user);
 
                 // Update Localisation if is has changed
-                SetLanguage(user.Culture);
+                SetLanguage(profile.Culture);
 
                 ViewData["StatusMessage"] = "Saved Profile";
             }
