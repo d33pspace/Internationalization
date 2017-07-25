@@ -14,6 +14,7 @@ using Internationalization.Models;
 using Internationalization.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
+using Internationalization.Filters;
 using Microsoft.AspNetCore.Localization;
 
 namespace Internationalization
@@ -51,6 +52,8 @@ namespace Internationalization
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<LanguageActionFilter>();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
