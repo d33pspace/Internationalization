@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Internationalization.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -111,6 +111,9 @@ namespace Internationalization.Controllers
             {
                 user.CurrencyId = profile.CurrencyId;
                 await _userManager.UpdateAsync(user);
+
+                // Update Localisation if is has changed
+                SetLanguage(user.Culture);
 
                 ViewData["StatusMessage"] = "Saved Profile";
             }

@@ -7,18 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Internationalization.Controllers
 {
-    public class LocalizationController : Controller
+    public class LocalizationController : BaseController
     {
 
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)
         {
-            Response.Cookies.Append(
-                CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTime.UtcNow.AddYears(1) }
-            );
-
+            SetLanguage(culture);
             return LocalRedirect(returnUrl);
         }
 
@@ -28,13 +23,7 @@ namespace Internationalization.Controllers
             // Culture contains the information of the requested culture
             var currentCulture = feature.RequestCulture.Culture;
             var culture = currentCulture.Name == "en-US" ? "zh-CN" : "en-US";
-
-            Response.Cookies.Append(
-                CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTime.UtcNow.AddYears(1) }
-            );
-
+            SetLanguage(culture);
             return LocalRedirect(returnUrl);
         }
     }
