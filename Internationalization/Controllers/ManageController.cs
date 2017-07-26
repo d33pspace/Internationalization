@@ -127,6 +127,7 @@ namespace Internationalization.Controllers
 
                 // Update Localisation if is has changed
                 SetLanguage(profile.Culture);
+                SetCurrency(profile.Currency);
 
                 ViewData["StatusMessage"] = "Saved Profile";
             }

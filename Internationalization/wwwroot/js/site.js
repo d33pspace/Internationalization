@@ -16,5 +16,20 @@
             }
         });
 
+        $('.currency-selector li').on('click', function (e) {
+            var curr = $(this).find('a').attr('data-value'),
+                $currencyForm = $('#currency-form'),
+                input = $currencyForm.find('input[name=culture]');
+
+            if (input.val() === curr) {
+                e.preventDefault();
+                return;
+            }
+            else {
+                input.val(curr);
+                $currencyForm.submit();
+            }
+        });
+
     });
 })(jQuery);
