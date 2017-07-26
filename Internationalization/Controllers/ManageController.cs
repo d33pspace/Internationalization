@@ -24,7 +24,7 @@ namespace Internationalization.Controllers
         private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ICurrencyRepository _currencyRepository;
+        private readonly ICurrencyService _currencyService;
         private readonly ILogger _logger;
 
         public ManageController(
@@ -34,7 +34,7 @@ namespace Internationalization.Controllers
           IEmailSender emailSender,
           ISmsSender smsSender,
           ILoggerFactory loggerFactory,
-          ICurrencyRepository currencyRepository)
+          ICurrencyService currencyService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -42,7 +42,7 @@ namespace Internationalization.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<ManageController>();
-            _currencyRepository = currencyRepository;
+            _currencyService = currencyService;
         }
 
         //
@@ -80,10 +80,10 @@ namespace Internationalization.Controllers
             var cultureInfo = GetCulture();
             if (user.CurrencyId == null)
             {
-                user.CurrencyId = _currencyRepository.GetBySymbolAsync(cultureInfo.currencySymbol)?.Id;
+                user.CurrencyId = _currencyService.GetBySymbolAsync(cultureInfo.currencySymbol)?.Id;
             }
 
-            var currencies = await _currencyRepository.GetAllAsync();
+            var currencies = await _currencyService.GetAllAsync();
 
             var model = new IndexViewModel
             {

@@ -13,9 +13,9 @@ namespace Internationalization.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ICurrencyRepository _currencyService;
+        private readonly ICurrencyService _currencyService;
 
-        public ProductsController(IProductService productService, ICurrencyRepository currencyService)
+        public ProductsController(IProductService productService, ICurrencyService currencyService)
         {
             _productService = productService;
             _currencyService = currencyService;

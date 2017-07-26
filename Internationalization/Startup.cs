@@ -65,7 +65,7 @@ namespace Internationalization
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddTransient<ICurrencyRepository, CurrencyService>();
+            services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddTransient<IProductService, ProductService>();
         }
 

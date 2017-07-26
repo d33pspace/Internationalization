@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Internationalization.Services
 {
-    public class CurrencyService : ICurrencyRepository
+    public class CurrencyService : ICurrencyService
     {
         private readonly ApplicationDbContext _context;
 
@@ -35,6 +35,11 @@ namespace Internationalization.Services
             return await _context
                 .Currencies
                 .ToListAsync();
+        }
+
+        public string GetCurrentCurrency()
+        {
+            return null;
         }
     }
 }

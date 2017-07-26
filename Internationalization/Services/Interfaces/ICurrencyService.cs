@@ -4,10 +4,11 @@ using Internationalization.Models;
 
 namespace Internationalization.Services
 {
-    public interface ICurrencyRepository
+    public interface ICurrencyService
     {
         Task<Currency> GetAsync(int id);
         Task<Currency> GetBySymbolAsync(string symbol);
         Task<List<Currency>> GetAllAsync();
+        string GetCurrentCurrency();
     }
 }
