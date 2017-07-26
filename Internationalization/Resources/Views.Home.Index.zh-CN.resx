@@ -117,10 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="And this would be the home page." xml:space="preserve">
-    <value>这就是主页。</value>
-  </data>
   <data name="Home" xml:space="preserve">
     <value>家</value>
+  </data>
+  <data name="to help as many people as possible today!" xml:space="preserve">
+    <value>来帮助尽可能多的人！</value>
+  </data>
+  <data name="to provide a week of shelter and training for one person." xml:space="preserve">
+    <value>来帮助活动中心更换新的淋浴设施！</value>
+  </data>
+  <data name="to provide one day of showers, laundry and care for five people." xml:space="preserve">
+    <value>来提供一天的洗澡、洗衣和关怀服务！</value>
+  </data>
+  <data name="towards shower renovations or the purchase of a new van." xml:space="preserve">
+    <value>来购买新的面包车！</value>
+  </data>
+  <data name="YES! Use my gift below to transform the lives of Shanghai's poorest by providing them with food, clothes and opportunities to thrive. I'm sending my gift of:" xml:space="preserve">
+    <value>是的！请用我以下的捐赠来改变上海街头最贫困潦倒的人们的生活，给他们提供食物，衣服和重新开始生活的机会。我要捐赠：</value>
   </data>
 </root>
