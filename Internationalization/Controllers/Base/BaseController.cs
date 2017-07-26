@@ -50,7 +50,7 @@ namespace Internationalization.Controllers
                 var currentCulture = feature.RequestCulture.Culture;
 
                 // Get the currency from the appsettings if location is not China
-                return _currencyService.GetCurrent(currentCulture);
+                return _currencyService.GetCurrent();
             }
             return new CultureInfo(currency);
         }

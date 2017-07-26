@@ -11,7 +11,7 @@
 
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
     
-    var currency = CurrencyService.GetCurrent(requestCulture.RequestCulture.Culture);
+    var currency = CurrencyService.GetCurrent();
     double exchangeRate = 6.8;
 
     int giftOption1 = 18;

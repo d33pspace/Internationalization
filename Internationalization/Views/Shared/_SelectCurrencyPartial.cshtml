@@ -10,7 +10,7 @@
 
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var current = CurrencyService.GetCurrent(requestCulture.RequestCulture.Culture);
+    var current = CurrencyService.GetCurrent();
     var availableCurrencies = CurrencyService
         .GetAll()
         .Select(c => new SelectListItem
@@ -24,10 +24,10 @@
         Currency (@CurrencyService.GetSymbol(current))
         <span class="caret"></span>
     </a>
-    <ul class="dropdown-menu lang-selector">
+    <ul class="dropdown-menu currency-selector">
         @foreach (var currency in availableCurrencies)
         {
-            if (currency.Value == CurrencyService.GetSymbol(current))
+            if (currency.Text == CurrencyService.GetSymbol(current))
             {
                 <li><a href="#" data-value="@currency.Value">@currency.Text <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></li>
             }
@@ -38,7 +38,7 @@
         }
     </ul>
     <form asp-controller="Localization" asp-action="SetCurrency" asp-route-returnUrl="@Context.Request.Path"
-                method="post" id="lang-form" role="form">
-        <input type="hidden" name="culture" value="@requestCulture.RequestCulture.UICulture.Name" />
+                method="post" id="currency-form" role="form">
+        <input type="hidden" name="culture" value="@current" />
     </form>
 </li>

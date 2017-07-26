@@ -74,7 +74,7 @@ namespace Internationalization.Controllers
             {
                 var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
                 var culture = requestCulture.RequestCulture.Culture;
-                user.Currency = _currencyService.GetCurrent(culture).Name;
+                user.Currency = _currencyService.GetCurrent().Name;
             }
 
             var currencies = _currencyService.GetAll();

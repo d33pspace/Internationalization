@@ -7,7 +7,7 @@ namespace Internationalization.Services
 {
     public interface ICurrencyService
     {
-        CultureInfo GetCurrent(CultureInfo currentCulture);
+        CultureInfo GetCurrent();
         List<Currency> GetAll();
         string GetSymbol(CultureInfo culture);
     }
