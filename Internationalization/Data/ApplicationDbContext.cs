@@ -23,11 +23,5 @@ namespace Internationalization.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-
-        public DbSet<Currency> Currencies { get; set; }
-
-        public DbSet<Donation> Donations { get; set; }
-
-        public DbSet<Product> Products { get; set; }
     }
 }

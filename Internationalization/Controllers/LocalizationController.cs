@@ -1,4 +1,5 @@
 using System;
+using Internationalization.Services;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -17,6 +18,13 @@ namespace Internationalization.Controllers
             return LocalRedirect(returnUrl);
         }
 
+        [HttpPost]
+        public IActionResult SetCurrency(string culture, string returnUrl)
+        {
+            SetCurrency(culture);
+            return LocalRedirect(returnUrl);
+        }
+
         public IActionResult ToggleLanguage(string returnUrl)
         {
             var feature = Request.HttpContext.Features.Get<IRequestCultureFeature>();
@@ -26,5 +34,6 @@ namespace Internationalization.Controllers
             SetLanguage(culture);
             return LocalRedirect(returnUrl);
         }
+
     }
 }

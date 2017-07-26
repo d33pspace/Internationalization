@@ -11,7 +11,7 @@ namespace Internationalization.Models
     {
         public string FullName { get; set; }
 
-        public int? CurrencyId { get; set; }
+        public string Currency { get; set; }
 
         public string Culture { get; set; }
 

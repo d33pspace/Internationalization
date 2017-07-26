@@ -24,7 +24,7 @@ namespace Internationalization.Models.ManageViewModels
         public string FullName { get; set; }
 
         [Display(Name = "Select Currency")]
-        public int? CurrencyId { get; set; }
+        public string Currency { get; set; }
 
         [Display(Name = "Select Language")]
         public string Culture { get; set; }

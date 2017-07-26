@@ -19,7 +19,6 @@ namespace Internationalization.Controllers
         public IActionResult Index()
         {
             ViewData["Message"] = _localizer["The home page."];
-
             return View();
         }
 

@@ -1,16 +1,17 @@
-﻿@using Internationalization.Services
+﻿@using System.Globalization
+@using Internationalization.Services
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.AspNetCore.Localization
 
 @inject IViewLocalizer Localizer
-@inject ICurrencyService CurrencyService 
+@inject ICurrencyService CurrencyService
     
 @{
     ViewData["Title"] = Localizer["Home"].Value;
 
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-
-    string currentCurrency = CurrencyService.GetCurrentCurrency();
+    
+    var currency = CurrencyService.GetCurrent(requestCulture.RequestCulture.Culture);
     double exchangeRate = 6.8;
 
     int giftOption1 = 18;
@@ -23,9 +24,9 @@
 <p>@Localizer["YES! Use my gift below to transform the lives of Shanghai's poorest by providing them with food, clothes and opportunities to thrive. I'm sending my gift of:"]</p>
 
 <ul>
-    <li>@giftOption1.ToString("C") @Localizer["to provide one day of showers, laundry and care for five people."]</li>
-    <li>@giftOption2.ToString("C") @Localizer["to provide a week of shelter and training for one person."]</li>
-    <li>@giftOption3.ToString("C") @Localizer["towards shower renovations or the purchase of a new van."]</li>
+    <li>@giftOption1.ToString("C", currency) @Localizer["to provide one day of showers, laundry and care for five people."]</li>
+    <li>@giftOption2.ToString("C", currency) @Localizer["to provide a week of shelter and training for one person."]</li>
+    <li>@giftOption3.ToString("C", currency) @Localizer["towards shower renovations or the purchase of a new van."]</li>
     <li>$____ @Localizer["to help as many people as possible today!"]</li>
 </ul>
 

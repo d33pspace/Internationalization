@@ -53,13 +53,6 @@ namespace Internationalization.Controllers
             // Optionaly use the region info to get default currency for user
 
 
-            (string currencySymbol, string cultureName) GetCulture()
-            {
-                var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-                var culture = requestCulture.RequestCulture.Culture;
-                var regionInfo = new RegionInfo(culture.Name);
-                return (regionInfo.ISOCurrencySymbol, culture.Name);
-            }
 
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -76,14 +69,15 @@ namespace Internationalization.Controllers
                 return View("Error");
             }
 
-            // 
-            var cultureInfo = GetCulture();
-            if (user.CurrencyId == null)
+            // Give the user a default currency if they dont have
+            if (string.IsNullOrEmpty(user.Currency))
             {
-                user.CurrencyId = _currencyService.GetBySymbolAsync(cultureInfo.currencySymbol)?.Id;
+                var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
+                var culture = requestCulture.RequestCulture.Culture;
+                user.Currency = _currencyService.GetCurrent(culture).Name;
             }
 
-            var currencies = await _currencyService.GetAllAsync();
+            var currencies = _currencyService.GetAll();
 
             var model = new IndexViewModel
             {
@@ -94,12 +88,12 @@ namespace Internationalization.Controllers
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
                 FullName = user.FullName,
                 Culture = user.Culture,
-                CurrencyId = user.CurrencyId,
+                Currency = user.Currency,
                 CurrencyList = new List<SelectListItem>(currencies.Select(c => 
                                         new SelectListItem
                                         {
                                             Text = c.Symbol,
-                                            Value = c.Id.ToString()
+                                            Value = c.CultureName
                                         })),
                 CultureList = new List<SelectListItem>
                 {
@@ -126,7 +120,7 @@ namespace Internationalization.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                user.CurrencyId = profile.CurrencyId;
+                user.Currency = profile.Currency;
                 user.Culture = profile.Culture;
                 user.FullName = profile.FullName;
                 await _userManager.UpdateAsync(user);
