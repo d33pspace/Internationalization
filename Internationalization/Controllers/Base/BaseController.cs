@@ -39,20 +39,5 @@ namespace Internationalization.Controllers
             );
         }
 
-        public CultureInfo GetCurrency()
-        {
-            // Check is we have it in the cookie
-            var currency = Request.Cookies[DefaultCurrencyCookieName];
-            if (currency == null)
-            {
-                // Get current location
-                var feature = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-                var currentCulture = feature.RequestCulture.Culture;
-
-                // Get the currency from the appsettings if location is not China
-                return _currencyService.GetCurrent();
-            }
-            return new CultureInfo(currency);
-        }
     }
 }
