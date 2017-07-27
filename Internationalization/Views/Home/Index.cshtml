@@ -27,7 +27,12 @@
     <li>@giftOption1.ToString("C", currency) @Localizer["to provide one day of showers, laundry and care for five people."]</li>
     <li>@giftOption2.ToString("C", currency) @Localizer["to provide a week of shelter and training for one person."]</li>
     <li>@giftOption3.ToString("C", currency) @Localizer["towards shower renovations or the purchase of a new van."]</li>
-    <li>$____ @Localizer["to help as many people as possible today!"]</li>
+    <li>@if (currency.EnglishName == "English (United States)")
+        { <span>$</span> }
+        else
+        { <span>¥</span> }
+        _____ @Localizer["to help as many people as possible today!"]
+    </li>
 </ul>
 
 <p>@requestCulture.RequestCulture.Culture.DisplayName</p>
