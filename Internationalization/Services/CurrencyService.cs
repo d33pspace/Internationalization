@@ -46,18 +46,21 @@ namespace Internationalization.Services
                 return new CultureInfo(cultureName);
             }
 
+            if (CultureInfo.CurrentCulture.Name.Contains("zh"))
+                return CultureInfo.CurrentCulture;
+
             // App settings default is set?
             var appSettingsCurrency = _currencyOptions.Value.DefaultCurrencyCulture;
-            if(string.IsNullOrEmpty(appSettingsCurrency))
+            if(!string.IsNullOrEmpty(appSettingsCurrency))
                 return new CultureInfo(appSettingsCurrency);
 
             // Return current thread culture
-            return CultureInfo.CurrentCulture; //server thread
+            return CultureInfo.CurrentCulture;
         }
 
         public string GetSymbol(CultureInfo culture)
         {
-            var regionInfo = new RegionInfo(culture.Name);
+            var regionInfo = culture.Name.Contains("zh") ? new RegionInfo("zh-CN") : new RegionInfo(culture.Name);
             return regionInfo.ISOCurrencySymbol;
         }
     }
