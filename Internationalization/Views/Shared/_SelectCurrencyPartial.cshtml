@@ -22,13 +22,13 @@
 }
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        Currency (@CurrencyService.GetSymbol(current))
+        Currency (@CurrencyService.GetISOName(current))
         <span class="caret"></span>
     </a>
     <ul class="dropdown-menu currency-selector">
         @foreach (var currency in availableCurrencies)
         {
-            if (currency.Text == CurrencyService.GetSymbol(current))
+            if (currency.Text == CurrencyService.GetISOName(current))
             {
                 <li><a href="#" data-value="@currency.Value">@currency.Text <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a></li>
             }

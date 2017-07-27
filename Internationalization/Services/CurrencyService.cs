@@ -16,7 +16,7 @@ namespace Internationalization.Services
 
 
         private IEnumerable<Currency> Currencies => _cultures
-            .Select(c => new Currency { CultureName = c.Name, Symbol = GetSymbol(c) });
+            .Select(c => new Currency { CultureName = c.Name, Symbol = GetISOName(c) });
 
         public readonly string DefaultCurrencyCookieName = ".AspNetCore.Currency";
 
@@ -59,6 +59,12 @@ namespace Internationalization.Services
         }
 
         public string GetSymbol(CultureInfo culture)
+        {
+            var regionInfo = culture.Name.Contains("zh") ? new RegionInfo("zh-CN") : new RegionInfo(culture.Name);
+            return regionInfo.CurrencySymbol;
+        }
+
+        public string GetISOName(CultureInfo culture)
         {
             var regionInfo = culture.Name.Contains("zh") ? new RegionInfo("zh-CN") : new RegionInfo(culture.Name);
             return regionInfo.ISOCurrencySymbol;

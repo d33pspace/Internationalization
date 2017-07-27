@@ -10,5 +10,6 @@ namespace Internationalization.Services
         CultureInfo GetCurrent();
         List<Currency> GetAll();
         string GetSymbol(CultureInfo culture);
+        string GetISOName(CultureInfo culture);
     }
 }
