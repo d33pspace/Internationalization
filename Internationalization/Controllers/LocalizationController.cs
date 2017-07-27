@@ -10,6 +10,12 @@ namespace Internationalization.Controllers
 {
     public class LocalizationController : BaseController
     {
+        private readonly ICurrencyService _currencyService;
+
+        public LocalizationController(ICurrencyService currencyService)
+        {
+            _currencyService = currencyService;
+        }
 
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)
@@ -32,6 +38,14 @@ namespace Internationalization.Controllers
             var currentCulture = feature.RequestCulture.Culture;
             var culture = currentCulture.Name == "en-US" ? "zh-CN" : "en-US";
             SetLanguage(culture);
+            return LocalRedirect(returnUrl);
+        }
+
+        public IActionResult ToggleCurrency(string returnUrl)
+        {
+            var current = _currencyService.GetCurrent();
+            var culture = current.Name == "en-US" ? "zh-CN" : "en-US";
+            SetCurrency(culture);
             return LocalRedirect(returnUrl);
         }
 

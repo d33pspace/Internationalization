@@ -53,6 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
+            @await Html.PartialAsync("_CurrencyTogglePartial")
             @await Html.PartialAsync("_LanguageTogglePartial")
             <p>&copy; 2017 - Internationalization</p>
         </footer>
