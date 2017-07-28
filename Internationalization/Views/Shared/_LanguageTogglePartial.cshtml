@@ -6,8 +6,8 @@
 @{
     var culture = Context.Features.Get<IRequestCultureFeature>();
 }
-<div class="pull-right">
+<!--<div class="pull-right">-->
     <a asp-controller="Localization" asp-action="ToggleLanguage" asp-route-returnUrl="@Context.Request.Path">
         Switch language (@culture.RequestCulture.UICulture.Name)
     </a>
-</div>
+<!--</div>-->

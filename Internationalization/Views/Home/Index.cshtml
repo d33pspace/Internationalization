@@ -10,14 +10,22 @@
     ViewData["Title"] = Localizer["Home"].Value;
 
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    
+
     var currency = CurrencyService.GetCurrent();
     double exchangeRate = 6.8;
 
-    int giftOption1 = 18;
-    int giftOption2 = 63;
-    int giftOption3 = 200;
+    double giftOption1 = 18;
+    double giftOption2 = 63;
+    double giftOption3 = 200;
+
+    if (currency.EnglishName == "Chinese (Simplified, China)")
+    {
+        giftOption1 = giftOption1 * exchangeRate;
+        giftOption2 = giftOption2 * exchangeRate;
+        giftOption3 = giftOption3 * exchangeRate;
+    }
 }
+
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 

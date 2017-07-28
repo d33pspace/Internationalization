@@ -9,8 +9,8 @@
 @{
     var culture = CurrencyService.GetCurrent();
 }
-<div class="pull-right">
+<!--<div class="pull-right">-->
     <a asp-controller="Localization" asp-action="ToggleCurrency" asp-route-returnUrl="@Context.Request.Path">
         Currency: (@CurrencyService.GetSymbol(culture))
     </a>
-</div>
+<!--</div>-->
