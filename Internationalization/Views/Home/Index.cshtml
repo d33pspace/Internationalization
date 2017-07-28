@@ -18,7 +18,7 @@
     double giftOption2 = 63;
     double giftOption3 = 200;
 
-    if (currency.EnglishName == "Chinese (Simplified, China)")
+    if (currency.Name.Contains("zh"))
     {
         giftOption1 = giftOption1 * exchangeRate;
         giftOption2 = giftOption2 * exchangeRate;
