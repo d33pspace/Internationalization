@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Home" xml:space="preserve">
-    <value>家</value>
-  </data>
   <data name="to help as many people as possible today!" xml:space="preserve">
     <value>来帮助尽可能多的人！</value>
   </data>
