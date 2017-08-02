@@ -15,11 +15,5 @@ namespace Internationalization.Models
 
         public string Culture { get; set; }
 
-        public ICollection<Donation> Donations { get; set; }
-
-        public ApplicationUser()
-        {
-            Donations = new HashSet<Donation>();
-        }
     }
 }
